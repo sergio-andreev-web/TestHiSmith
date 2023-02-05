@@ -117,6 +117,12 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'rss_log' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/rss.log'),
+            'level' => 'debug',
+        ],
     ],
 
 ];

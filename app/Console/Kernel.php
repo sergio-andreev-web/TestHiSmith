@@ -15,7 +15,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $lockFile = fopen(base_path('parser.lock'), 'w+');
+
+        if (flock($lockFile, LOCK_EX | LOCK_NB)) {
+            $schedule->command('parse:rss')->cron('* * * * *');
+            flock($lockFile, LOCK_UN);
+        }
+
+        fclose($lockFile);
     }
 
     /**
