@@ -8,14 +8,9 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 /**
- * @SWG\Swagger(
- *   schemes={"http"},
- *   host="localhost:8000",
- *   basePath="/",
- *   @SWG\Info(
- *     title="News posts API",
- *     version="1.0.0"
- *   )
+ * @OA\Info(
+ *    title="News documentation",
+ *    version="1.0.0",
  * )
  */
 

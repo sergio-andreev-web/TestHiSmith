@@ -27,18 +27,41 @@ class NewsController extends Controller
     }
 
     /**
-     * @SWG\Get(
-     *     path="/show_all_news",
-     *     summary="Get list of all news",
+     * @OA\Get(
+     *     path="/news/",
+     *     summary="Get all news with paginate",
      *     tags={"News"},
-     *     @SWG\Response(
+     *     description="Get all news with paginate",
+     *     @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         description="page number",
+     *         required=false,
+     *     ),
+     *     @OA\Parameter(
+     *         name="sort",
+     *         in="path",
+     *         description="sort by asc/desc",
+     *         required=false,
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="News fields",
+     *         required=false,
+     *     ),
+     *     @OA\Response(
      *         response=200,
      *         description="successful operation",
      *     ),
-     *     @SWG\Response(
+     *     @OA\Response(
      *         response="401",
      *         description="Unauthorized user",
      *     ),
+     *     @OA\Response(
+     *         response="404",
+     *         description="some troubles",
+     *     )
      * )
      */
 
@@ -55,6 +78,33 @@ class NewsController extends Controller
 
         return view('news', ['news' => $news]);
     }
+
+    /**
+     * @OA\Get(
+     *     path="/news/post/{id}",
+     *     summary="Get news post by id",
+     *     tags={"News"},
+     *     description="Get news post by id",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="News id",
+     *         required=true,
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *     ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="Unauthorized user",
+     *     ),
+     *     @OA\Response(
+     *         response="404",
+     *         description="News post is not found",
+     *     )
+     * )
+     */
 
     public function showOne(int $id)
     {

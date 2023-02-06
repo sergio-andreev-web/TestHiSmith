@@ -19,9 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//for test
 Route::get('/phpinfo', [\App\Http\Controllers\NewsController::class, 'showPhpInfo']);
 
+//main news routes
 Route::get('/news', [\App\Http\Controllers\NewsController::class, 'showAll']);
 Route::get('/news/post/{id}', [\App\Http\Controllers\NewsController::class, 'showOne'])->name('news.post');
-
 
